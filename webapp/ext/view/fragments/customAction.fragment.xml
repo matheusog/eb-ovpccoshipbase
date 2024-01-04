@@ -1,0 +1,6 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core">
+    <!--@ui5-ignore-->
+    <Button type="Transparent" text="{i18n>button.nav.sof}" press=".onNavSoF"/>
+</core:FragmentDefinition>

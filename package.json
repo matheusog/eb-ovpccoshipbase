@@ -1,0 +1,50 @@
+{
+  "name": "ovpccoshipbase",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Dashboard CCO - Carregamento Navio",
+  "keywords": [
+    "ui5",
+    "openui5",
+    "sapui5"
+  ],
+  "main": "webapp/index.html",
+  "devDependencies": {
+    "eblog-lib-core": "1.52.21",
+    "eblog-lib-core-custom": "1.52.21",
+    "@ui5/cli": "^3.1.1",
+    "@sap/ux-ui5-tooling": "1",
+    "ui5-middleware-simpleproxy": "^0.9.1"
+  },
+  "scripts": {
+    "start": "fiori run --open \"test/flpSandbox.html?sap-client=001&sap-language=PT&sap-ui-xx-viewCache=false#EBLOGCCOShipLoad-displayOVP\"",
+    "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-client=001&sap-language=PT&sap-ui-xx-viewCache=false#EBLOGCCOShipLoad-displayOVP\"",
+    "build": "ui5 build --config=ui5.yaml --exclude-task escapeNonAsciiCharacters --clean-dest --dest dist",
+    "deploy": "fiori verify",
+    "deploy-config": "fiori add deploy-config",
+    "start-noflp": "fiori run --open \"index.html?sap-client=001&sap-ui-xx-viewCache=false\"",
+    "start-mock": "fiori run --open \"test/flpSandboxMockServer.html?sap-client=001&sap-ui-xx-viewCache=false#EBLOGCCOShipLoad-displayOVP\"",
+    "start-variants-management": "fiori run --open \"preview.html?&sap-client=001&sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
+    "unit-tests": "fiori run --open test/unit/unitTests.qunit.html",
+    "int-tests": "fiori run --open test/integration/opaTests.qunit.html"
+  },
+  "ui5": {
+    "dependencies": [
+      "eblog-lib-core",
+      "eblog-lib-core-custom",
+      "ui5-middleware-simpleproxy",
+      "@sap/ux-ui5-tooling"
+    ]
+  },
+  "sapuxLayer": "CUSTOMER_BASE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusog/eb-ovpccoshipbase.git"
+  },
+  "author": "matheusog",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheusog/eb-ovpccoshipbase/issues"
+  },
+  "homepage": "https://github.com/matheusog/eb-ovpccoshipbase#readme"
+}

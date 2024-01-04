@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.5"
+metadata:
+  name: com.eldorado.sap.eblog.ovpccoshipbase
+type: application
+server:
+  customMiddleware:  
+    - name: ui5-middleware-simpleproxy
+      afterMiddleware: compression
+      mountPath: /resources/sap-ui-core.js
+      configuration:
+        baseUri: "http://brspowvgtq01.enterprise.ad:8000/sap/public/bc/ui5_ui5/1/resources/sap-ui-core.js"
+        strictSSL: false 
+        username: ${env.UI5_USERNAME}
+        password: ${env.UI5_PASSWORD}
+        query:
+          sap-client: '001'
+    - name: ui5-middleware-simpleproxy
+      afterMiddleware: compression
+      mountPath: /resources/
+      configuration:
+        baseUri: "http://brspowvgtq01.enterprise.ad:8000/sap/public/bc/ui5_ui5/1/resources/"
+        strictSSL: false 
+        username: ${env.UI5_USERNAME}
+        password: ${env.UI5_PASSWORD}
+        query:
+          sap-client: '001'
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        #ui5:
+        #  path:
+        #    - /resources
+        #    - /test-resources
+        #  url: https://ui5.sap.com
+        #  version: 1.44.19 # The UI5 version, for instance, 1.78.1. Empty string means latest version
+        backend:
+          - path: /sap
+            url: http://brspowvgtq01.enterprise.ad:8000
+            client: '001'
+            credentials:
+              username: ${env.UI5_USERNAME}
+              password: ${env:UI5_PASSWORD}
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.eldorado.sap.eblog.ovpccoshipbase
+        ui5Theme: sap_belize
+    - name: fiori-tools-servestatic
+      afterMiddleware: compression
+      configuration:
+        paths:
+          - path: /resources/com.eldorado.sap.eblog.shippingboardoper
+            src: ..\shippingboardoper\webapp
+          - path: /appconfig
+            src: appconfig
+          - path: /resources/com/el/ovp
+            src: ..\eblogcore\src\com\el\ovp
+            fallthrough: false
+          - path: /resources/com/el/sap/eblog/lib/custom
+            src: ..\eblogcorecustom\src\com\el\sap\eblog\lib\custom
+            fallthrough: false        

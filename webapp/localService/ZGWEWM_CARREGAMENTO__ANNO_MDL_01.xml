@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="http://brspowvgtq01.enterprise.ad:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='EWM')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://brspowvgtq01.enterprise.ad:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='EWM')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://brspowvgtq01.enterprise.ad:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='EWM')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://brspowvgtq01.enterprise.ad:8000/sap/opu/odata/SAP/ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV">
+        <edmx:Include Namespace="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="ZGWEWM_CARREGAMENTO__ANNO_MDL_01.v1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipBoardingOperationsType/DateBeginKey">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipBoardingOperationsType/DateEndKey">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipBoardingOperationsType/TimeFromKey">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Hidden"/>
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipBoardingOperationsType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="SoF - Operação de Embarque"/>
+                        <PropertyValue Property="TypeNamePlural" String="SoF - Operações de Embarque"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Warehouse"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TripNumber"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Cradle"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Code"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DateBegin"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TimeFrom"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DateEnd"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TimeTo"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TermoType"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Hold"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Comm"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Ttl"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Cause"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Observation"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationUser"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationDate"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationTime"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Cradle"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Code"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DateBegin"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TimeFrom"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DateEnd"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TimeTo"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TermoType"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Hold"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Comm"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Ttl"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Cause"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Observation"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationUser"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationDate"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationTime"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                        <PropertyPath>Cradle</PropertyPath>
+                        <PropertyPath>Code</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadBasementLoadType">
+                <Annotation Term="UI.Chart" Qualifier="baseLoad">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Description" String="Carregamento por Porão do navio"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked100"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>Basement</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="Basement"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>BasementCapacityStack</PropertyPath>
+                                <PropertyPath>RealLoadQuantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="BasementCapacityStack"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="RealLoadQuantity"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadItinerTotalType">
+                <Annotation Term="UI.Chart" Qualifier="harborLoad">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Description" String="Total embarcado do navio"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>TargetHarbor</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="TargetHarbor"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>BalanceQuantity</PropertyPath>
+                                <PropertyPath>LoadQuantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="BalanceQuantity"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="LoadQuantity"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadStatusType">
+                <Annotation Term="UI.Chart" Qualifier="statusBar">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Description" String="Status de carregamento da carga do navio"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>ShipLoadStatus</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="ShipLoadStatus"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="ShipLoadStatus"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>LoadQuantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="LoadQuantity"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="statusDonut">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Description" String="Status de carregamento da carga do navio"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>ShipLoadStatus</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="ShipLoadStatus"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>LoadQuantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="LoadQuantity"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Warehouse"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TripNumber"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ShipLoadStatus"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LoadQuantity"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadTotalType">
+                <Annotation Term="UI.Chart" Qualifier="statusPie">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="Description" String="Total embarcado do navio"/>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="Dimensions">
+                            <Collection>
+                                <PropertyPath>ShipLoadCategory</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="DimensionAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartDimensionAttributeType">
+                                    <PropertyValue Property="Dimension" PropertyPath="ShipLoadCategory"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>LoadQuantity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="Measure" PropertyPath="LoadQuantity"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

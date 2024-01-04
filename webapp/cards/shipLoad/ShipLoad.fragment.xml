@@ -1,0 +1,72 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"	
+	xmlns:commons="sap.suite.ui.commons"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:layout="sap.ui.layout"
+>	
+	<VBox class="ovpChartTitleVBox cardType shipLoadContainer">
+		<!--			
+		xmlns:smartchart="sap.ui.comp.smartchart"
+		xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		<smartchart:SmartChart entitySet="ZC_EWM_ShipLoadBasementLoad"  enableAutoBinding="true"
+			useVariantManagement="false" useChartPersonalisation="false"
+			showFullScreenButton="true" selectionMode="Multi"
+			showChartTooltip="true" showDrillBreadcrumbs="false"
+			showDetailsButton="false" showDrillButtons="false"
+			showSemanticNavigationButton="false"
+			customData:chartQualifier="baseLoad"
+			ignoredFields="Warehouse,TripNumber"
+			class="shipLoadChart">
+		</smartchart:SmartChart>
+		
+	<layout:Splitter width="100%" height="100%" class="shipLoadChart">
+		<layout:contentAreas>		
+			<commons:ChartContainer
+				id="chartContainer"
+				showFullScreen="true"
+				showPersonalization="false"
+				autoAdjustHeight="true"
+				title="Revenue">
+				<commons:content>
+					<commons:ChartContainerContent>
+						<commons:content>
+						</commons:content>
+					</commons:ChartContainerContent>
+				</commons:content>
+			</commons:ChartContainer>
+		</layout:contentAreas>
+	</layout:Splitter>-->
+		<VBox class="shipLoadChart">
+			<viz:VizFrame class="ovpViz" id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                width="100%"
+				vizType="100_stacked_column" 
+				legendVisible="true">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{ path: '/ZC_EWM_ShipLoadBasementLoad', parameters:{ expand : 'to_BasementProducts'} }">
+                        <viz.data:dimensions>
+						<!--{/#ZC_EWM_ShipLoadBasementLoad/Basement/@sap:label}-->
+                            <viz.data:DimensionDefinition name="{/#ZC_EWM_ShipLoadBasementLoad/Basement/@sap:label}" 
+                                value="{Basement}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="{/#ZC_EWM_ShipLoadBasementLoad/BasementCapacityStack/@sap:label}"
+                                value="{BasementCapacityStack}" />
+                            <viz.data:MeasureDefinition name="{/#ZC_EWM_ShipLoadBasementLoad/RealLoadQuantity/@sap:label}"
+                                value="{RealLoadQuantity}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure"
+                        values="{= [${/#ZC_EWM_ShipLoadBasementLoad/BasementCapacityStack/@sap:label},${/#ZC_EWM_ShipLoadBasementLoad/RealLoadQuantity/@sap:label}] }" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+                        values="{= [${/#ZC_EWM_ShipLoadBasementLoad/Basement/@sap:label}] }" />
+                </viz:feeds>
+            </viz:VizFrame>	
+		</VBox>
+	</VBox>
+	
+</c:FragmentDefinition>

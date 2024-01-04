@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://brspowvgtq01.enterprise.ad:8000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='EWM')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ShipLoadFiltersType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:filter-restriction="single-value" sap:required-in-filter="true" sap:unicode="false" sap:label="Nº do depósito" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:filter-restriction="single-value" sap:required-in-filter="true" sap:unicode="false" sap:label="Viagem" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ShipLoadStatusType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                    <PropertyRef Name="ShipLoadStatus"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Nº do depósito" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Viagem" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShipLoadStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:text="ShipLoadStatusText" sap:unicode="false" sap:label="Status de Carreg." sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ShipLoadStatusText" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Status de Carreg." sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="Quantidade Carreg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="UM base" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Subtitle" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Char80" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="WarehouseType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Lgnum"/>
+                </Key>
+                <Property Name="Lgnum" Type="Edm.String" Nullable="false" MaxLength="4" sap:text="Lnumt" sap:unicode="false" sap:label="Nº do depósito" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lnumt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Denominação" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TripType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Viagem"/>
+                </Key>
+                <Property Name="Viagem" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="DescViagem" sap:unicode="false" sap:label="Viagem" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DescViagem" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Descrição da Viagem" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="BoardType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                    <PropertyRef Name="Terno"/>
+                </Key>
+                <Property Name="LoadBegin" Type="Edm.DateTimeOffset" Precision="0" sap:unicode="false" sap:label="Dt.Carreg. Inicial" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TernoText" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Desc.Terno" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LoadEnd" Type="Edm.DateTimeOffset" Precision="0" sap:unicode="false" sap:label="Dt.Térm. Carreg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Nº do depósito" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Viagem" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Terno" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Tp. Terno" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Minimum" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="Quantidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Maximum" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="Quantidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Deviation" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="Quantidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tolerance" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="Quantidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Target" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="Quantidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Forecast" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="Quantidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.Decimal" Precision="13" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="Quantidade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="UM base" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="CurrentPrevision" Type="Edm.DateTimeOffset" Precision="0" sap:unicode="false" sap:label="Prev. Térm. Atual" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InitialPrevision" Type="Edm.DateTimeOffset" Precision="0" sap:unicode="false" sap:label="Prev. Térm. Inicial" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ParadaType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Nº do depósito" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Viagem" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TotalStopSeconds" Type="Edm.Int32" sap:unicode="false" sap:label="Total das Paradas" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZC_EWM_ShipBoardingOperationsType" sap:label="Consumption - Operações de embarque" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                    <PropertyRef Name="Cradle"/>
+                    <PropertyRef Name="Code"/>
+                    <PropertyRef Name="DateBeginKey"/>
+                    <PropertyRef Name="DateEndKey"/>
+                    <PropertyRef Name="TimeFromKey"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Nº do depósito"/>
+                <Property Name="DateEnd" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data Fim"/>
+                <Property Name="TimeTo" Type="Edm.Time" Precision="0" sap:label="Hora Fim"/>
+                <Property Name="TermoType" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Tipo de Terno"/>
+                <Property Name="Hold" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Hold"/>
+                <Property Name="Comm" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Comm"/>
+                <Property Name="Ttl" Type="Edm.Time" Precision="0" sap:label="TTL"/>
+                <Property Name="Cause" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="Cause"/>
+                <Property Name="Observation" Type="Edm.String" MaxLength="200" sap:display-format="UpperCase" sap:label="Texto (200 caract.)"/>
+                <Property Name="CreationUser" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Usuário"/>
+                <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data do cadastro"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Viagem"/>
+                <Property Name="CreationTime" Type="Edm.Time" Precision="0" sap:label="Hora"/>
+                <Property Name="Cradle" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Berço"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Código Oper."/>
+                <Property Name="DateBeginKey" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="UpperCase"/>
+                <Property Name="DateEndKey" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="UpperCase"/>
+                <Property Name="TimeFromKey" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase"/>
+                <Property Name="DateBegin" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data Inicio"/>
+                <Property Name="TimeFrom" Type="Edm.Time" Precision="0" sap:label="Hora Inicio"/>
+            </EntityType>
+            <EntityType Name="ZC_EWM_ShipLoadStatusType" sap:label="Consumption - Status de carregamento do navio" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                    <PropertyRef Name="ShipLoadStatus"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Nº do depósito"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Viagem"/>
+                <Property Name="ShipLoadStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:text="ShipLoadStatusText"/>
+                <Property Name="ShipLoadStatusText" Type="Edm.String" MaxLength="60" sap:label="Descrição breve"/>
+                <Property Name="LoadQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="QuantityUnit" sap:label="Qtd. Embarcada"/>
+                <Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.medida básica" sap:semantics="unit-of-measure"/>
+            </EntityType>
+            <EntityType Name="ZC_EWM_ShipLoadSumTotalType" sap:label="Consumption - Total embarcado para o navio na viagem." sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Nº do depósito"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Viagem"/>
+                <Property Name="ReturnQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:label="Quantidade Retorno"/>
+                <Property Name="LoadQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:label="Expedido Total"/>
+                <Property Name="RealLoadQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:label="Embarcado"/>
+                <Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.medida básica" sap:semantics="unit-of-measure"/>
+                <Property Name="AwaitingLoadCount" Type="Edm.Int32" sap:label="Aguar. Carregamento"/>
+                <Property Name="AtLoadingStatusCount" Type="Edm.Int32" sap:label="Em Carregamento"/>
+                <Property Name="TotalLoadingTime" Type="Edm.Decimal" Precision="13" Scale="4" sap:label="Tempo Operação"/>
+                <Property Name="AverageLoadingTime" Type="Edm.Decimal" Precision="13" Scale="4" sap:label="Tempo Médio Carreg."/>
+                <Property Name="TotalStopSeconds" Type="Edm.Int32" sap:label="Total das Paradas"/>
+            </EntityType>
+            <EntityType Name="ZC_EWM_ShipLoadTotalType" sap:label="Consumption - Total embarcado para o navio na viagem." sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                    <PropertyRef Name="ShipLoadCategory"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Nº do depósito"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Viagem"/>
+                <Property Name="ShipLoadCategory" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:text="ShipLoadCategoryText" sap:label="Status de Carreg."/>
+                <Property Name="ShipLoadCategoryText" Type="Edm.String" MaxLength="80" sap:label="Status de Carreg."/>
+                <Property Name="LoadQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="QuantityUnit" sap:label="Qtd. Embarcada"/>
+                <Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.medida básica" sap:semantics="unit-of-measure"/>
+                <Property Name="Subtitle" Type="Edm.String" MaxLength="80" sap:display-format="UpperCase"/>
+            </EntityType>
+            <EntityType Name="ZI_EWM_ShipLoadStatusType" sap:label="Status de Carregamento do Navio" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:text="StatusText"/>
+                <Property Name="StatusText" Type="Edm.String" MaxLength="60" sap:label="Descrição breve"/>
+            </EntityType>
+            <EntityType Name="ZC_EWM_ShipLoadBasementLoadType" sap:label="Carregamento por porão do navio" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                    <PropertyRef Name="Basement"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Nº do depósito"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Viagem"/>
+                <Property Name="Basement" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:label="Porão"/>
+                <Property Name="BasementCapacityStack" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="BasementCapacityUnit" sap:label="Saldo"/>
+                <Property Name="BasementCapacity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="BasementCapacityUnit" sap:label="Capacidade Total"/>
+                <Property Name="BasementCapacityUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.medida básica" sap:semantics="unit-of-measure"/>
+                <Property Name="RealLoadQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="LoadQuantityUnit" sap:label="Embarcado"/>
+                <Property Name="LoadQuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.medida básica" sap:semantics="unit-of-measure"/>
+                <NavigationProperty Name="to_BasementProducts" Relationship="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.assoc_FA638FF315214CF0D8DCB49B68FDC6A0" FromRole="FromRole_assoc_FA638FF315214CF0D8DCB49B68FDC6A0" ToRole="ToRole_assoc_FA638FF315214CF0D8DCB49B68FDC6A0"/>
+            </EntityType>
+            <EntityType Name="ZC_EWM_ShipLoadItinerTotalType" sap:label="Consumption - Total embarcado por porto a viagem." sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                    <PropertyRef Name="Itinerary"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Nº do depósito"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Viagem"/>
+                <Property Name="Itinerary" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="Itinerário"/>
+                <Property Name="TargetHarbor" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:text="TargetHarborName" sap:label="Porto de Destino"/>
+                <Property Name="TargetHarborName" Type="Edm.String" MaxLength="40" sap:label="Nome 1"/>
+                <Property Name="LoadQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="TotalShipUnit" sap:label="Qtd. Embarcada"/>
+                <Property Name="BalanceQuantity" Type="Edm.Decimal" Precision="13" Scale="2" sap:unit="TotalShipUnit" sap:label="Saldo"/>
+                <Property Name="TotalShipQuantity" Type="Edm.Decimal" Precision="13" Scale="2" sap:unit="TotalShipUnit" sap:label="Quantidade Porto."/>
+                <Property Name="TotalShipUnit" Type="Edm.String" MaxLength="3" sap:label="Unidade de venda" sap:semantics="unit-of-measure"/>
+            </EntityType>
+            <EntityType Name="ZC_EWM_ShipLoadSchBsmProdTotType" sap:label="Total de Produtos embarcados por porão" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Warehouse"/>
+                    <PropertyRef Name="TripNumber"/>
+                    <PropertyRef Name="Basement"/>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Nº do depósito"/>
+                <Property Name="TripNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Viagem"/>
+                <Property Name="Basement" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:label="Porão"/>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:text="ProductName" sap:label="Nº do produto"/>
+                <Property Name="ReturnQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="QuantityUnit"/>
+                <Property Name="LoadQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="QuantityUnit"/>
+                <Property Name="RealLoadQuantity" Type="Edm.Decimal" Precision="8" Scale="0" sap:unit="QuantityUnit"/>
+                <Property Name="QuantityUnit" Type="Edm.String" MaxLength="3" sap:label="Unid.medida básica" sap:semantics="unit-of-measure"/>
+                <Property Name="ProductName" Type="Edm.String" MaxLength="40" sap:label="Denom.produto"/>
+            </EntityType>
+            <Association Name="assoc_FA638FF315214CF0D8DCB49B68FDC6A0" sap:content-version="1">
+                <End Type="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadBasementLoadType" Multiplicity="1" Role="FromRole_assoc_FA638FF315214CF0D8DCB49B68FDC6A0"/>
+                <End Type="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadSchBsmProdTotType" Multiplicity="*" Role="ToRole_assoc_FA638FF315214CF0D8DCB49B68FDC6A0"/>
+            </Association>
+            <EntityContainer Name="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ShipLoadFiltersSet" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ShipLoadFiltersType" sap:label="Filtros - Carregamento Navio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ShipLoadStatusSet" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ShipLoadStatusType" sap:label="Status de Carregamento do Navio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="WarehouseSet" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.WarehouseType" sap:label="Depósitos - SH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="TripSet" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.TripType" sap:label="Viagens - SH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="BoardSet" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.BoardType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ParadaSet" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ParadaType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZC_EWM_ShipBoardingOperations" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipBoardingOperationsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZC_EWM_ShipLoadStatus" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadStatusType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZC_EWM_ShipLoadSumTotal" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadSumTotalType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZC_EWM_ShipLoadTotal" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadTotalType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZI_EWM_ShipLoadStatus" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZI_EWM_ShipLoadStatusType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZC_EWM_ShipLoadBasementLoad" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadBasementLoadType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZC_EWM_ShipLoadItinerTotal" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadItinerTotalType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZC_EWM_ShipLoadSchBsmProdTot" EntityType="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadSchBsmProdTotType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_FA638FF315214CF0D8DCB49B68FDC6A0" Association="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.assoc_FA638FF315214CF0D8DCB49B68FDC6A0" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZC_EWM_ShipLoadBasementLoad" Role="FromRole_assoc_FA638FF315214CF0D8DCB49B68FDC6A0"/>
+                    <End EntitySet="ZC_EWM_ShipLoadSchBsmProdTot" Role="ToRole_assoc_FA638FF315214CF0D8DCB49B68FDC6A0"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipBoardingOperationsType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                        <PropertyPath>Cradle</PropertyPath>
+                        <PropertyPath>Code</PropertyPath>
+                        <PropertyPath>DateBeginKey</PropertyPath>
+                        <PropertyPath>DateEndKey</PropertyPath>
+                        <PropertyPath>TimeFromKey</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadBasementLoadType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                        <PropertyPath>Basement</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadItinerTotalType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadSchBsmProdTotType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                        <PropertyPath>Basement</PropertyPath>
+                        <PropertyPath>Product</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadStatusType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                        <PropertyPath>ShipLoadStatus</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadSumTotalType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZC_EWM_ShipLoadTotalType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                        <PropertyPath>ShipLoadCategory</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV.ZI_EWM_ShipLoadStatusType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>Status</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://brspowvgtq01.enterprise.ad:8000/sap/opu/odata/sap/ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://brspowvgtq01.enterprise.ad:8000/sap/opu/odata/sap/ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

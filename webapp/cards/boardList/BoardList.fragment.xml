@@ -1,0 +1,103 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:smartmicrochart="sap.ui.comp.smartmicrochart"
+>	
+	<!--xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"-->
+	
+	<VBox class="ovpChartTitleVBox cardType">
+	<List
+		items="{/BoardSet}"
+		growingThreshold="5"		
+	>	
+		<!-- @ui5ignore -->
+		<CustomListItem class="sapUiTinyMarginTop" type="Active" press=".onListPress">
+			<HBox justifyContent="SpaceBetween">							
+				<ObjectIdentifier
+					text="{TernoText}"
+					title="{path: 'Terno', formatter: '.oFormatter.fnFormatTerno'}"
+				/> 
+				<smartmicrochart:SmartMicroChart entitySet="BoardSet" 
+					tooltip="{
+						path: '',
+						formatter: '.oFormatter.fnFormatMicroChartTooltip'
+					}" showLabel="true" >
+					<smartmicrochart:customData>
+						<c:CustomData key="chartQualifier" value="BulletChartQualifier" />
+					</smartmicrochart:customData>
+				</smartmicrochart:SmartMicroChart>			
+			</HBox>
+			<HBox justifyContent="SpaceBetween" class="sapUiSmallMarginBottom">
+				<VBox>
+					<Text text="{i18n>card02.chartValue}" />
+					<ObjectNumber
+						number="{
+							path: 'Value',
+							formatOptions: {
+								preserveDecimals: false,
+								style: 'short'
+							}}"
+						unit="{ path: 'Unit', formatter: '.oFormatter.fnFormatUnit'}"
+					/>
+				</VBox>
+				<VBox>
+					<Text text="{i18n>card02.chartTarget}" />
+					<ObjectNumber
+						number="{
+							path: 'Target',
+							formatOptions: {
+								preserveDecimals: false,
+								style: 'short'
+							}}"
+						unit="{ path: 'Unit', formatter: '.oFormatter.fnFormatUnit'}"
+					/>
+				</VBox>
+			</HBox>
+			<HBox justifyContent="SpaceBetween" class="sapUiSmallMarginBottom">
+				<ObjectAttribute
+					visible="{= ${Terno} === '' || ${Terno} === '00' }"
+					text="{ path: 'InitialPrevision',
+							type: 'sap.ui.model.odata.type.DateTimeOffset',
+							formatOptions: {
+								UTC: true,
+								style: 'short'
+							}}"
+					title="{main>/#BoardSet/InitialPrevision/@sap:label}"
+				/>
+				<ObjectAttribute
+					visible="{= ${Terno} === '' || ${Terno} === '00' }"
+					text="{ path: 'LoadBegin',
+							type: 'sap.ui.model.odata.type.DateTimeOffset',
+							formatOptions: {
+								UTC: true,
+								style: 'short'
+							}}"
+					title="{main>/#BoardSet/LoadBegin/@sap:label}"
+				/>
+			</HBox>
+			<HBox justifyContent="SpaceBetween" class="sapUiSmallMarginBottom">
+				<ObjectAttribute
+					visible="{= ${Terno} === '' || ${Terno} === '00' }"
+					text="{ path: 'CurrentPrevision',
+							type: 'sap.ui.model.odata.type.DateTimeOffset',
+							formatOptions: {
+								UTC: true,
+								style: 'short'
+							}}"
+					title="{main>/#BoardSet/CurrentPrevision/@sap:label}"
+				/>
+				<ObjectAttribute
+					visible="{= ${Terno} === '' || ${Terno} === '00' }"
+					text="{ path: 'LoadEnd',
+							type: 'sap.ui.model.odata.type.DateTimeOffset',
+							formatOptions: {
+								UTC: true,
+								style: 'short'
+							}}"
+					title="{main>/#BoardSet/LoadEnd/@sap:label}"
+				/>
+			</HBox>
+		</CustomListItem>
+	</List>
+	</VBox>
+</c:FragmentDefinition>

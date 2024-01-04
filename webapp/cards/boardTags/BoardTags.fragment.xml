@@ -1,0 +1,72 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <VBox class="ovpChartTitleVBox cardType"
+		  items="{ path: 'main>/BoardSet',
+                   filters : [
+                     { path : 'Terno', operator : 'EQ', value1 : '' },
+                     { path : 'Terno', operator : 'EQ', value1 : '00' }
+                   ] }">
+		<VBox>
+            <HBox wrap="Wrap" alignItems="Center" alignContent="Center" justifyContent="Center">
+				<GenericTile class="sapUiSmallMargin"
+					header="{main>/#BoardSet/LoadBegin/@sap:label}"
+					mode="ContentMode"
+				>
+					<tileContent>
+						<TileContent>
+							<Text text="{ path: 'main>LoadBegin',
+                                          type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                          formatOptions: {
+                                            UTC: true,
+                                            style: 'short'
+                                          }}" />
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+                <GenericTile class="sapUiSmallMargin"
+					header="{main>/#BoardSet/CurrDate/@sap:label}"
+					mode="ContentMode" >
+					<tileContent>
+						<TileContent>
+							<Text text="{ path: 'main>CurrDate',
+                                          type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                          formatOptions: {
+                                            UTC: true,
+                                            style: 'short'
+                                          }}" />
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+				<GenericTile class="sapUiSmallMargin"
+					header="{main>/#BoardSet/LoadedVolume/@sap:label}"
+					mode="ContentMode" >
+					<tileContent>
+						<TileContent>
+							<ObjectNumber number="{ path: 'main>LoadedVolume' }" unit="{ path: 'main>Unit' }" />
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+				<GenericTile class="sapUiSmallMargin"
+					header="{main>/#BoardSet/GrossBoard/@sap:label}"
+					mode="ContentMode" >
+					<tileContent>
+						<TileContent>
+							<ObjectNumber number="{ path: 'main>GrossBoard' }" unit="TO/dia" />
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+				<GenericTile class="sapUiSmallMargin"
+					header="{main>/#BoardSet/NetBoard/@sap:label}"
+					mode="ContentMode" >
+					<tileContent>
+						<TileContent>
+							<ObjectNumber number="{ path: 'main>NetBoard' }" unit="TO/dia" />
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+            </HBox>
+        </VBox>
+	</VBox>
+</c:FragmentDefinition>

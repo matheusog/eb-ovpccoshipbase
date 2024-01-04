@@ -1,0 +1,9 @@
+{
+  "applications": {
+    "EBLOGCCOShipLoad-displayOper": {
+      "additionalInformation": "SAPUI5.Component=com.eldorado.sap.eblog.shippingboardoper",
+      "applicationType": "URL",
+      "url": "../resources/com.eldorado.sap.eblog.shippingboardoper"
+    }
+  }
+}

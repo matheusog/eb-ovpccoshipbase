@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Measures.V1.xml">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference  Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../sap/opu/odata/sap/ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV/$metadata">
+        <edmx:Include Namespace="ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="com.eldorado.sap.eblog.ovpccoshipbase.ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotations Target="SAP.ShipLoadFiltersType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>                        
+                        <PropertyPath>Warehouse</PropertyPath>
+                        <PropertyPath>TripNumber</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP.BoardType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast" />                
+                <Annotation Term="UI.LineItem" Qualifier="View1">
+                    <Collection>          
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="TernoText"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAnnotation">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#DPForTernoBullet"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="BulletChartQualifier">
+					<Record>
+						<PropertyValue EnumMember="UI.ChartType/Bullet" Property="ChartType" />
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>Value</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="Value" />
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1" />
+									<PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#DPForTernoBullet" />
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="DPForTernoBullet">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Value" Path="Value" />
+                        <PropertyValue Property="Visualization" EnumMember="UI.VisualizationType/BulletChart" />
+                        <PropertyValue Property="ValueFormat">
+                            <Record Type="UI.NumberFormat">
+                                <PropertyValue Property="ScaleFactor" Decimal="0" />
+                                <PropertyValue Property="NumberOfFractionalDigits" Int="3"/>
+                            </Record>
+						</PropertyValue>
+						<PropertyValue Path="ForecastRevenue" Property="Forecast" />
+                        <PropertyValue Path="Target" Property="Target" />
+						<PropertyValue Path="Minimum" Property="MinimumValue" />
+						<PropertyValue Path="Maximum" Property="MaximumValue" />
+						<PropertyValue Property="CriticalityCalculation">
+							<Record>
+								<PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Maximize" />
+								<PropertyValue Path="Deviation" Property="DeviationRangeLowValue" />
+								<PropertyValue Path="Tolerance" Property="ToleranceRangeLowValue" />
+							</Record>
+						</PropertyValue>
+                    </Record>
+                </Annotation>                
+            </Annotations>
+            <Annotations Target="SAP.ShipLoadFiltersType/Warehouse" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="CollectionPath" String="WarehouseSet" />
+                        <PropertyValue Property="SearchSupported" Bool="false" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Warehouse"/>
+                                    <PropertyValue Property="ValueListProperty" String="Lgnum"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Lnumt"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>                    
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP.ShipLoadFiltersType/TripNumber" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="CollectionPath" String="ZI_EWM_TripHeaderVH" />
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="TripNumber"/>
+                                    <PropertyValue Property="ValueListProperty" String="TripNumber"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Warehouse"/>
+                                    <PropertyValue Property="ValueListProperty" String="Warehouse"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="TripDescription"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShipNumber"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShipETADate"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShipETDDate"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="TripStatus"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShipType"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterFilterOnly">
+                                    <PropertyValue Property="ValueListProperty" String="EliminationFlag"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>                    
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx> 

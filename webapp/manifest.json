@@ -1,0 +1,216 @@
+{
+  "_version": "1.14.0",
+  "sap.app": {
+    "id": "com.eldorado.sap.eblog.ovpccoshipbase",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "tags": {
+      "keywords": []
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZGWEWM_CARREGAMENTO_NAVIO_CCO_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": ["ZGWEWM_CARREGAMENTO__ANNO_MDL_01", "annotations"],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"          
+        }
+      },
+      "ZGWEWM_CARREGAMENTO__ANNO_MDL_01": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZGWEWM_CARREGAMENTO__ANNO_MDL_01',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+            "localUri": "localService/ZGWEWM_CARREGAMENTO__ANNO_MDL_01.xml"
+        }
+      },
+      "annotations": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotations.xml",
+        "settings": {
+            "localUri": "annotations/annotations.xml"
+        }
+      }
+    }, 
+    "offline": false,
+    "sourceTemplate": {
+      "id": "OVP.smartovptemplate",
+      "version": "1.41.1"
+    }, 
+    "embeddedBy": "../",
+    "crossNavigation": {
+			"inbounds": {
+				"intent": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "EBLOGCCOShipLoad",
+					"action": "displayOvp"
+				}
+			},
+			"outbounds": {
+				"SOF": {
+					"semanticObject": "EBLOGCCOShipLoad",
+					"action": "displayOper"
+				}
+			}
+		}
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }, 
+    "supportedThemes": ["sap_hcb", "sap_belize"],
+    "fullWidth": true
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.44.8",
+      "libs": {
+        "sap.ui.core": {}, 
+        "sap.ovp": {}, 
+        "sap.viz": {}, 
+        "com.el.ovp": {}, 
+        "com.el.sap.eblog.lib.custom": {}
+      }, 
+      "components": {}
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "preload": false, 
+        "settings": {
+          "bundleName": "com.eldorado.sap.eblog.ovpccoshipbase.i18n.i18n"
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      },
+      "main": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {          
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "defaultUpdateMethod": "Put",
+          "operationMode": "Server"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {          
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "defaultUpdateMethod": "Put",
+          "operationMode": "Server"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "com.el.ovp.app.Main": {
+            "controllerName": "com.eldorado.sap.eblog.ovpccoshipbase.ext.controller.MainControllerExt"
+          }, 
+          "sap.ovp.app.Main": {
+            "controllerName": "com.eldorado.sap.eblog.ovpccoshipbase.ext.controller.MainControllerExt"
+          }
+        }, 
+				"sap.ui.viewExtensions": {
+          "com.el.ovp.app.Main": {    
+            "SmartFilterBarGlobalActionExtension": {
+              "className": "sap.ui.core.Fragment",
+              "fragmentName": "com.eldorado.sap.eblog.ovpccoshipbase.ext.view.fragments.customAction",
+              "type": "XML"
+            }
+          }                   
+				}
+			}
+    }
+  },
+  "sap.ovp": {  
+    "globalFilterModel": "main",
+    "globalFilterEntityType": "ShipLoadFiltersType",
+    "chartSettings": {
+      "showDataLabel":true
+    },
+    "containerLayout": "resizable",
+    "smartVariantRequired": true, 
+    "enableLiveFilter": false,
+    "considerAnalyticalParameters": false,
+    "showDateInRelativeFormat": false,
+    "refreshIntervalInMinutes": 1,
+    "cards": {
+      "card01": {
+				"model": "main",
+				"template": "com.eldorado.sap.eblog.ovpccoshipbase.cards.shipLoad",
+				"settings": {
+					"title": "{{card01.title}}",
+          "defaultSpan": {
+            "rows": 2,
+            "cols": 1
+          }
+				}        
+			},  
+      "card03": {        
+        "template": "com.eldorado.sap.eblog.ovpccoshipbase.cards.boardTags",
+        "settings": {
+          "entitySet": "BoardSet",
+          "title": "{{card03.title}}",
+          "sortBy": "Terno",
+          "sortOrder": "ascending",
+          "navigation": "noHeaderNav",           
+          "defaultSpan": {
+            "rows": 5,
+            "cols": 3
+          }
+        }
+      },  
+      "card04": {        
+        "template": "com.eldorado.sap.eblog.ovpccoshipbase.cards.boardPrev",
+        "settings": {
+          "entitySet": "BoardSet",
+          "title": "{{card04.title}}",
+          "sortBy": "Terno",
+          "sortOrder": "ascending",
+          "navigation": "noHeaderNav",           
+          "defaultSpan": {
+            "rows": 5,
+            "cols": 3
+          }
+        }
+      }
+    }
+  }
+}

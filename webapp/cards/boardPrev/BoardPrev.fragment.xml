@@ -1,0 +1,54 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <VBox class="ovpChartTitleVBox cardType"
+		  items="{ path: 'main>/BoardSet',
+                   filters : [
+                     { path : 'Terno', operator : 'EQ', value1 : '' },
+                     { path : 'Terno', operator : 'EQ', value1 : '00' }
+                   ] }">
+		<VBox>
+            <HBox wrap="Wrap" alignItems="Center" alignContent="Center" justifyContent="Center">
+				<GenericTile class="sapUiSmallMargin"
+					header="{main>/#BoardSet/LoadBegin/@sap:label}"
+					mode="ContentMode"
+				>
+					<tileContent>
+						<TileContent>
+							<Text text="{ path: 'main>LoadBegin',
+                                          type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                          formatOptions: {
+                                            UTC: true,
+                                            style: 'short'
+                                          }}" />
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+                <GenericTile class="sapUiSmallMargin"
+					header="{main>/#BoardSet/CurrentPrevision/@sap:label}"
+					mode="ContentMode" >
+					<tileContent>
+						<TileContent>
+							<Text text="{ path: 'main>CurrentPrevision',
+                                          type: 'sap.ui.model.odata.type.DateTimeOffset',
+                                          formatOptions: {
+                                            UTC: true,
+                                            style: 'short'
+                                          }}" />
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+				<GenericTile class="sapUiSmallMargin"
+					header="{main>/#BoardSet/LoadVolume/@sap:label}"
+					mode="ContentMode" >
+					<tileContent>
+						<TileContent>
+							<ObjectNumber number="{ path: 'main>LoadVolume' }" unit="{ path: 'main>Unit' }" />
+						</TileContent>
+					</tileContent>
+				</GenericTile>
+            </HBox>
+        </VBox>
+	</VBox>
+</c:FragmentDefinition>
