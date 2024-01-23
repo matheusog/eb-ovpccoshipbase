@@ -4,6 +4,7 @@
     /*global sap, jQuery */
     jQuery.sap.require("sap/ui/model/Filter");
     jQuery.sap.require("sap/ui/model/FilterOperator");
+    jQuery.sap.require("sap/ui/model/json/JSONModel");
     jQuery.sap.require("sap/ui/core/format/DateFormat");
     jQuery.sap.require("sap/m/MessageBox");
     jQuery.sap.require("sap/ui/generic/app/navigation/service/NavError");
@@ -14,6 +15,7 @@
     sap.viz.api.env.Format
     var Filter              = sap.ui.model.Filter,
         FilterOperator      = sap.ui.model.FilterOperator,
+        JSONModel           = sap.ui.model.json.JSONModel,
         DateFormat          = sap.ui.core.format.DateFormat, 
         MessageBox          = sap.m.MessageBox,
         NavError            = sap.ui.generic.app.navigation.service.NavError,
@@ -48,6 +50,29 @@
                 //return oView;
             //};
 
+            this._oUiStaticModel = new JSONModel({ TripText: "" });
+            this.getView().setModel(this._oUiStaticModel, "uiStatic");
+
+            this.oGlobalFilter.attachSearch(null, (oEvent) => {
+                let aFilters = oEvent.getParameters()[0].selectionSet;
+                if(aFilters.length === 0) {
+                    return;
+                }
+                let aTripFilter = aFilters.filter((oItem) => { return oItem.getId().indexOf("TripNumber") >= 0; });
+                if(aTripFilter.length === 0) {
+                    return; 
+                }
+                
+                let aTokens = aTripFilter[0].getTokens();
+                if(aTokens.length === 0) {
+                    return; 
+                }
+
+                let sTripText = aTokens[0].getText();
+                this.getView().getModel("uiStatic").setProperty("/TripText", sTripText);
+                
+            }, this);
+            
             var fnFormat = com.el.ovp.cards.charts.VizAnnotationManager.formatChartAxes;
             com.el.ovp.cards.charts.VizAnnotationManager.formatChartAxes = function() {
                 fnFormat.bind(this)();

@@ -2,5 +2,6 @@
     xmlns="sap.m" 
     xmlns:core="sap.ui.core">
     <!--@ui5-ignore-->
+    <Text text="{uiStatic>/TripText}" />
     <Button type="Transparent" text="{i18n>button.nav.sof}" press=".onNavSoF"/>
 </core:FragmentDefinition>
