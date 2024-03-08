@@ -6,6 +6,15 @@
     display: none;
 }
 
+.customTileEBLOG .sapMTileCntContent > div.sapMTcInnerMarker span, 
+.customTileEBLOG .sapMTileCntContent > span.sapMTcInnerMarker { 
+    font-size: 1.1rem;
+}
+
+.customTileEBLOG .sapMGTHdrTxt > .sapMText span { 
+    font-size: 1.3rem;
+}
+
 .sapMVBox .shipLoadContainer {
     opacity: 80%;
 }

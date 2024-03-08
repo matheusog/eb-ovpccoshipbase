@@ -110,9 +110,36 @@
 				}
 			});
 
+			this._oVizFrame.attachRenderComplete(null, this._renderComplete, this);
+
 			this._oPopOver = new Popover(this._getPopoverPoperties().popoverProps); //this.getView().byId("idPopOver");
             this._oPopOver.connect(this._oVizFrame.getVizUid());
 		}, 
+
+		_renderComplete: function(oEvent) {
+			let oVizProp = this._oVizFrame.getVizProperties();
+			let sNewText = this.getView().getModel("uiStatic").getProperty("/TripText");
+
+			if(oVizProp.title.text !== sNewText) {
+				oVizProp.title.text = sNewText; 
+				this._oVizFrame.setVizProperties(oVizProp);
+			}
+		},
+
+		// _requestCompleted: function(oEvent) {
+		// 	let sShip = this.getView().getModel("uiStatic").getProperty("/TripText");
+			// if(oEvent.getParameter("response").statusCode === "200") {
+			// 	try{
+			// 		let oJson = JSON.parse(oEvent.getParameter("response").responseText);
+			// 		let oData = (oJson.d.results && oJson.d.results.length > 0 && oJson.d.results[0] || undefined); 
+			// 		if(!oData) {
+			// 			throw "No data"; 
+			// 		}
+			// 	} catch(e) {
+
+			// 	}
+			// }
+		// },
 
 		_getPopoverPoperties: function() {
 			var that = this;
@@ -125,28 +152,35 @@
 							
 							let sKey = 
 								this.getModel().createKey("/ZC_EWM_ShipLoadBasementLoad", 
-									{ Warehouse: oFilterData.Warehouse, TripNumber: oFilterData.TripNumber, Basement: data.data.val[0].value }
-								);
+									{ Warehouse: (oFilterData.Warehouse.items && oFilterData.Warehouse.items.length > 0 && oFilterData.Warehouse.items[0].key || 
+												  	oFilterData.Warehouse.ranges && oFilterData.Warehouse.ranges.length > 0 && oFilterData.Warehouse.ranges[0].value1 || 
+												  	oFilterData.Warehouse), 
+												  
+									  TripNumber: (oFilterData.TripNumber.items && oFilterData.TripNumber.items.length > 0 && oFilterData.TripNumber.items[0].key || 
+													oFilterData.TripNumber.ranges && oFilterData.TripNumber.ranges.length > 0 && oFilterData.TripNumber.ranges[0].value1 || 
+													oFilterData.TripNumber), 
+									  Basement: data.data.val[0].value });
 							
 							let oObject = this.getModel().getObject(sKey);
 							
 							var svg = "<svg width='10px' height='10px'><path d='M-5,-5L5,-5L5,5L-5,5Z' fill='" + data.data.color + "' transform='translate(5,5)'></path></svg>";
 							var divStr = "";
-							var values = data.data.val;
-							var bIsEmbarque = this.getModel().getObject("/#ZC_EWM_ShipLoadBasementLoad/BasementCapacityStack/@sap:label") === values[2].id;
+							var values = [];
+							values = data.data.val;
+							//var bIsEmbarque = this.getModel().getObject("/#ZC_EWM_ShipLoadBasementLoad/BasementCapacityStack/@sap:label") === values[2].id;
 							//idx = values[1].value
 							divStr = divStr + "<div class='popOverChartLayout'>" + svg + "<b style='margin-left:10px'>Porão: </b>" + values[0].value + "</div>";
-							divStr = divStr + `<div class='popOverChartLayout'><b style='margin-left:10px'>Capacidade Total: </b>${oObject.BasementCapacity} ${oObject.BasementCapacityUnit}</div>`;
-							divStr = divStr + `<div class='popOverChartLayout'><b style='margin-left:10px'>Embarcado: </b>${oObject.RealLoadQuantity} ${oObject.LoadQuantityUnit}</div>`;
-							divStr = divStr + `<div class='popOverChartLayout'><b style='margin-left:10px'>Saldo: </b>${oObject.BasementCapacityStack} ${oObject.BasementCapacityUnit}</div>`;
+							divStr = divStr + `<div class='popOverChartLayout'><b style='margin-left:10px'>Capacidade Total: </b>${oObject.BasementCapacity} ${this.oFormatter.fnFormatUnit(oObject.BasementCapacityUnit)}</div>`;
+							divStr = divStr + `<div class='popOverChartLayout'><b style='margin-left:10px'>Embarcado: </b>${oObject.RealLoadQuantity} ${this.oFormatter.fnFormatUnit(oObject.LoadQuantityUnit)}</div>`;
+							divStr = divStr + `<div class='popOverChartLayout'><b style='margin-left:10px'>Saldo: </b>${oObject.BasementCapacityStack} ${this.oFormatter.fnFormatUnit(oObject.BasementCapacityUnit)}</div>`;
 							//if(bIsEmbarque) {
 								divStr = divStr + "<div class='popOverChartLayout'><b style='margin-left:10px'>Produtos:</b></div>";
 								oObject.to_BasementProducts.__list.forEach((oItem) => {
 									let oProduct = this.getModel().getObject("/".concat(oItem));
 									//divStr = divStr + "<div style = 'margin: 5px 30px 0 30px'>" + values[2].name + "<span style = 'float: right'>" + values[2].value + "</span></div>";
 									divStr = divStr + "<div style = 'margin: 5px 30px 0 30px'><span style = 'float: right'>" + `${oProduct.ProductName} (${oProduct.Product})` + "</span></div>";
-									divStr = divStr + "<div style = 'margin: 5px 30px 0px 30px'>Embarcado:<span style = 'float: right'>" + `${oProduct.RealLoadQuantity} ${oProduct.QuantityUnit}` + "</span></div>";
-									divStr = divStr + `<div style = 'margin: 5px 30px 15px 30px'>Qtd. de Retorno:<span style = 'float: right'>${oProduct.ReturnQuantity} ${oProduct.QuantityUnit}</span></div>`;
+									divStr = divStr + "<div style = 'margin: 5px 30px 0px 30px'>Embarcado:<span style = 'float: right'>" + `${oProduct.RealLoadQuantity} ${this.oFormatter.fnFormatUnit(oProduct.QuantityUnit)}` + "</span></div>";
+									divStr = divStr + `<div style = 'margin: 5px 30px 15px 30px'>Qtd. de Retorno:<span style = 'float: right'>${oProduct.ReturnQuantity} ${this.oFormatter.fnFormatUnit(oProduct.QuantityUnit)}</span></div>`;
 									//LoadQuantity
 
 								});

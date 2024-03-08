@@ -10,8 +10,9 @@
                    ] }">
 		<VBox>
             <HBox wrap="Wrap" alignItems="Center" alignContent="Center" justifyContent="Center">
-				<GenericTile class="sapUiSmallMargin"
-					header="{main>/#BoardSet/LoadBegin/@sap:label}"
+				<!-- {main>/#BoardSet/LoadBegin/@sap:label} -->
+				<GenericTile class="sapUiSmallMargin customTileEBLOG"
+					header="{i18n>card.dtCarregIni}"
 					mode="ContentMode"
 				>
 					<tileContent>
@@ -25,7 +26,7 @@
 						</TileContent>
 					</tileContent>
 				</GenericTile>
-                <GenericTile class="sapUiSmallMargin"
+                <GenericTile class="sapUiSmallMargin customTileEBLOG"
 					header="{main>/#BoardSet/CurrDate/@sap:label}"
 					mode="ContentMode" >
 					<tileContent>
@@ -39,30 +40,30 @@
 						</TileContent>
 					</tileContent>
 				</GenericTile>
-				<GenericTile class="sapUiSmallMargin"
+				<GenericTile class="sapUiSmallMargin customTileEBLOG"
 					header="{main>/#BoardSet/LoadedVolume/@sap:label}"
 					mode="ContentMode" >
 					<tileContent>
 						<TileContent>
-							<ObjectNumber number="{ path: 'main>LoadedVolume' }" unit="{ path: 'main>Unit' }" />
+							<ObjectNumber number="{ path: 'main>LoadedVolume' }" unit="{ path: 'main>Unit', formatter: '.oFormatter.fnFormatUnit' }" />
 						</TileContent>
 					</tileContent>
 				</GenericTile>
-				<GenericTile class="sapUiSmallMargin"
+				<GenericTile class="sapUiSmallMargin customTileEBLOG"
 					header="{main>/#BoardSet/GrossBoard/@sap:label}"
 					mode="ContentMode" >
 					<tileContent>
 						<TileContent>
-							<ObjectNumber number="{ path: 'main>GrossBoard' }" unit="TO/dia" />
+							<ObjectNumber number="{ path: 'main>GrossBoard' }" unit="t/dia" />
 						</TileContent>
 					</tileContent>
 				</GenericTile>
-				<GenericTile class="sapUiSmallMargin"
+				<GenericTile class="sapUiSmallMargin customTileEBLOG"
 					header="{main>/#BoardSet/NetBoard/@sap:label}"
 					mode="ContentMode" >
 					<tileContent>
 						<TileContent>
-							<ObjectNumber number="{ path: 'main>NetBoard' }" unit="TO/dia" />
+							<ObjectNumber number="{ path: 'main>NetBoard' }" unit="t/dia" />
 						</TileContent>
 					</tileContent>
 				</GenericTile>
