@@ -63,13 +63,38 @@
                     return; 
                 }
                 
-                let aTokens = aTripFilter[0].getTokens();
+                var aTokens = aTripFilter[0].getTokens();
                 if(aTokens.length === 0) {
                     return; 
                 }
-
+                
+                let sTrip = aTokens[0].getKey();
                 let sTripText = aTokens[0].getText();
-                this.getView().getModel("uiStatic").setProperty("/TripText", sTripText);
+                if(sTrip) {
+                    this.getView().getModel("uiStatic").setProperty("/TripText", sTripText);
+                    return;    
+                }
+                
+                sTrip = sTripText.substring(1); //Remove '=' symbol
+                if(!sTrip) {
+                    return;
+                }
+
+                this.getView().getModel().read(`/ZI_EWM_TripHeaderVH`, {
+                    filters: [ new Filter('TripNumber', FilterOperator.EQ, sTrip) ],
+                    success: (oResponse) => { 
+                        if(oResponse && oResponse.results) {
+                            const sTrip = oResponse.results[0].TripNumber;
+                            const sShipName = oResponse.results[0].ShipName; 
+                            aTokens[0].setKey(sTrip);
+                            aTokens[0].setText(`${sTrip} (${sShipName})`);
+                            this.getView().getModel("uiStatic").setProperty("/TripText", sShipName);
+                        }
+                    },
+                    error: (oError) => {
+                        MessageBox.error(oError.responseText); 
+                    }
+                });              
                 
             }, this);
             
