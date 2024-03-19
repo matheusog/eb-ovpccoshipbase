@@ -118,6 +118,9 @@
                                     <PropertyValue Property="ValueListProperty" String="ShipNumber"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ShipName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="ShipETADate"/>
                                 </Record>
                                 <Record Type="Common.ValueListParameterDisplayOnly">
